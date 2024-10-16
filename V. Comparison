@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+     int A;
+     cin >> A;
+     char s;
+     cin >> s;
+     int B;
+     cin >> B;
+     if ((A > B && s == '>') || (A < B && s == '<') || (A == B && s == '='))
+     {
+          cout << "Right" << endl;
+     }
+     else
+     {
+          cout << "Wrong" << endl;
+     }
+     return 0;
+}
