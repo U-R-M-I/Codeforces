@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+     int A, B, C;
+     cin >> A;
+     char S, Q;
+     cin >> S;
+     cin >> B;
+     cin >> Q;
+     cin >> C;
+     int P = A + B;
+     int R = A - B;
+     int U = A * B;
+     if ((S == '+' && C == P) || (S == '-' && C == R) || (S == '*' && C == U))
+     {
+          cout << "Yes" << endl;
+     }
+     else if (S == '+' && C != P)
+     {
+          cout << P << endl;
+     }
+     else if (S == '-' && C != R)
+     {
+          cout << R << endl;
+     }
+     else if (S == '*' && C != U)
+     {
+          cout << U << endl;
+     }
+     return 0;
+}
