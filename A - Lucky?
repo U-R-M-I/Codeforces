@@ -1,0 +1,30 @@
+include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+     int n;
+     cin >> n;
+ 
+     while (n--)
+     {
+          string num;
+          cin >> num;
+          int sum1 = 0, sum2 = 0;
+          int p = num[0] - '0';
+          int q = num[1] - '0';
+          int r = num[2] - '0';
+          sum1 = p + q + r;
+          int u = num[3] - '0';
+          int v = num[4] - '0';
+          int w = num[5] - '0';
+          sum2 = u + v + w;
+          if (sum1 == sum2)
+          {
+               cout << "YES" << endl;
+          }
+          else
+          {
+               cout << "NO" << endl;
+          }
+     }
+     return 0;
