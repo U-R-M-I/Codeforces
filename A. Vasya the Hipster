@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+     int a, b;
+     cin >> a >> b;
+     int ans, ans1;
+     if (a == 0)
+     {
+          ans = 0;
+          if (b % 2 == 0)
+          {
+               ans1 = b / 2;
+          }
+          else
+          {
+               ans1 = (b - 1) / 2;
+          }
+     }
+     else if (b == 0)
+     {
+          ans = 0;
+          if (a % 2 == 0)
+          {
+               ans1 = a / 2;
+          }
+          else
+          {
+               ans1 = (a - 1) / 2;
+          }
+     }
+     else if (a > b)
+     {
+          ans = b;
+          if ((a - b) % 2 == 0)
+          {
+               ans1 = (a - b) / 2;
+          }
+          else
+          {
+               ans1 = ((a - b) - 1) / 2;
+          }
+     }
+     else if (b > a)
+     {
+          ans = a;
+          if ((b - a) % 2 == 0)
+          {
+               ans1 = (b - a) / 2;
+          }
+          else
+          {
+               ans1 = ((b - a) - 1) / 2;
+          }
+     }
+     else if (a == b)
+     {
+          ans1 = 0;
+          ans = a;
+     }
+
+     cout << ans << " " << ans1 << endl;
+     return 0;
+}
