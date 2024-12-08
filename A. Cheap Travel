@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+     int n, m, a, b;
+     cin >> n >> m >> a >> b;
+     int ans = INT_MAX;
+     for (int x = 0; x <= n; x++)
+     {
+          int y = (n - x + m - 1) / m;
+          int z = a * x + y * b;
+          if (z < ans)
+               ans = z;
+     }
+     cout << ans << endl;
+ 
+     return 0;
+}
