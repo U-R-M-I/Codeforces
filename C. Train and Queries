@@ -1,0 +1,268 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace std;
+using namespace __gnu_pbds;
+typedef long long ll;
+typedef long double ld;
+const ll MOD = 1e9 + 7;
+const ll bigMOD = 1e18 + 7;
+typedef tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
+ 
+/*Sieve*/
+const ll maxNForPrime = 3200000;
+ll isVisited[maxNForPrime / 64 + 200];
+vector<ll> primes;
+void sieve(ll limit)
+{
+     for (ll i = 3; i <= sqrt(limit); i += 2)
+          if (!(isVisited[i / 64] & (1LL << (i % 64))))
+               for (ll j = i * i; j <= limit; j += 2 * i)
+                    isVisited[j / 64] |= (1LL << (j % 64));
+     primes.push_back(2);
+     for (ll i = 3; i <= limit; i += 2)
+          if (!(isVisited[i / 64] & (1LL << (i % 64))))
+               primes.push_back(i);
+}
+ 
+/*Mathematical*/
+ll power(ll a, ll b)
+{
+     ll ans = 1;
+     while (b > 0)
+     {
+          if (b & 1)
+               ans *= a;
+          a *= a;
+          b >>= 1;
+     }
+     return ans;
+}
+ 
+ll powerMOD(ll a, ll b)
+{
+     ll ans = 1;
+     while (b > 0)
+     {
+          if (b & 1)
+               ans = (ans * (a % MOD)) % MOD;
+          a = ((a % MOD) * (a % MOD)) % MOD;
+          b >>= 1;
+     }
+     return ans;
+}
+ 
+ll binaryMultiply(ll a, ll b)
+{
+     ll ans = 0;
+     while (b > 0)
+     {
+          if (b & 1)
+               ans = (ans + a) % bigMOD;
+          a = (a + a) % bigMOD;
+          b >>= 1;
+     }
+     return ans;
+}
+ 
+ll bigPower(ll a, ll b)
+{
+     ll ans = 1;
+     while (b > 0)
+     {
+          if (b & 1)
+               ans = binaryMultiply(ans, a);
+          a = binaryMultiply(a, a);
+          b >>= 1;
+     }
+     return ans;
+}
+ 
+ll mod(ll a, ll m)
+{
+     return ((m - a % m) % m);
+}
+ll MMI(ll a, ll m)
+{
+     // only for primes
+     // and must change the value of mod
+     return powerMOD(a, m - 2);
+}
+ 
+ll gcd(ll a, ll b)
+{
+     return b == 0 ? a : gcd(b, a % b);
+}
+ 
+ll lcm(ll a, ll b)
+{
+     return ((a / gcd(a, b)) * b);
+}
+ 
+vector<pair<ll, ll>> primeFactors(ll n)
+{
+     vector<pair<ll, ll>> pf;
+     for (ll p : primes)
+     {
+          if (p * p > n)
+               break;
+          if (n % p == 0)
+          {
+               ll cnt = 0;
+               while (n % p == 0)
+               {
+                    cnt++;
+                    n /= p;
+               }
+               pf.push_back(make_pair(p, cnt));
+          }
+     }
+     if (n > 1)
+          pf.push_back(make_pair(n, 1));
+     return pf;
+}
+ 
+map<ll, vector<ll>> divisors(ll n)
+{
+     map<ll, vector<ll>> mp;
+     for (ll i = 1; i <= n; i++)
+          for (ll j = i; j <= n; j += i)
+               mp[j].push_back(i);
+     return mp;
+}
+ 
+/*
+    //when n is extremely large
+    //if n is prime phi of(n)=(n-1)
+    //otherwise phi of (n)=(n*(1-(1/pf1))*(1-(1/pf2))....)
+    //ETF(a,ETF(b,c,phi of(n)),MOD)
+*/
+ 
+/*Convert*/
+ll stringToInt(string &s)
+{
+     ll ans = 0;
+     for (ll i = 0; i < (ll)s.size(); i++)
+          ans = ans * 10 + (s[i] - '0');
+     return ans;
+}
+ 
+string intToBinary(ll x)
+{
+     string s;
+     while (x > 0)
+     {
+          s += (x % 2 ? '1' : '0');
+          x /= 2;
+     }
+     reverse(s.begin(), s.end());
+     return s;
+}
+ 
+ll countTotalSetBits(ll n)
+{
+     return __builtin_popcountll(n);
+}
+ 
+/*Check*/
+bool isPowerOfTwo(ll x)
+{
+     return (x && (!(x & (x - 1))));
+}
+ 
+bool isPerfectSquare(ll x)
+{
+     if (x >= 0)
+     {
+          ll sr = sqrt(x);
+          return (sr * sr == x);
+     }
+     return false;
+}
+ 
+/*using sieve*/
+bool isPrime(ll n)
+{
+     if (n < 2)
+          return false;
+     if (n == 2)
+          return true;
+     if (n % 2 == 0)
+          return false;
+     if (!(isVisited[n / 64] & (1LL << (n % 64))))
+          return true;
+     return false;
+}
+ 
+bool is_prime(ll n)
+{
+     if (n < 2)
+          return false;
+     if (n == 2)
+          return true;
+     if (n % 2 == 0)
+          return false;
+     for (ll i = 3; i * i <= n; i++)
+          if (n % i == 0)
+               return false;
+     return true;
+}
+ 
+bool isVowel(char ch)
+{
+     ch = tolower(ch);
+     if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+          return true;
+     return false;
+}
+ 
+/*Direction Array*/
+// D,R,U,L
+ll dx[8] = {1, 0, -1, 0, -1, 1, -1, 1};
+ll dy[8] = {0, 1, 0, -1, -1, 1, 1, -1};
+char dir[4] = {'D', 'R', 'U', 'L'};
+ 
+// Must check elachi case 0-9
+/*Code Begins*/
+ 
+void solve()
+{
+     ll n, q;
+     cin >> n >> q;
+     map<ll, multiset<ll>> pos;
+     for (ll i = 1; i <= n; i++)
+     {
+          ll in;
+          cin >> in;
+          pos[in].insert(i);
+     }
+     while (q--)
+     {
+          ll a, b;
+          cin >> a >> b;
+          if ((ll)pos[a].size() <= 0 || (ll)pos[b].size() <= 0)
+               cout << "NO" << '\n';
+          else
+          {
+               ll p1, p2;
+               p1 = (*pos[a].begin());
+               p2 = (*pos[b].rbegin());
+               if (p1 < p2)
+                    cout << "YES" << '\n';
+               else
+                    cout << "NO" << '\n';
+          }
+     }
+}
+int main()
+{
+     ios_base::sync_with_stdio(false);
+     cin.tie(nullptr);
+     cout.tie(nullptr);
+     ll t;
+     t = 1;
+     cin >> t;
+     while (t--)
+          solve();
+     return 0;
+}
