@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main ()
+{
+	long long n,m,i,c=0,t,k;
+	cin>>n>>m;
+	cin>>t;
+	k=t;
+	c+=t;
+	for (i=1;i <m;i++){
+		cin>>t;
+		if (k <t) c+=(t-k);
+		else if (k>t) c+=(n-k+t);
+		k=t;
+	}
+	c--;
+	cout <<c;
+	return 0;
+}
