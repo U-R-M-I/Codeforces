@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+void solve() {
+    long long n, x;
+    cin >> n >> x;
+    if (n==1 && x==0) {
+        cout << -1 << "\n";
+        return;
+    }
+    if (x==0) {
+        if (n%2==0) {
+            cout << n << "\n";
+        } else {
+            cout << n+3 << "\n";
+        }
+        return;
+    }
+    long long pc=__builtin_popcount(x);
+    if (pc>=n) {
+        cout << x << "\n";
+        return;
+    }
+    long long ans=0;
+    if (x==1 && n%2==0) {
+        ans+=2;
+    }
+ 
+    n-=pc;
+    while (n>=2) {
+        ans+=2;
+        n-=2;
+    }
+    if (n==1) {
+        ans+=2;
+    }
+    cout << ans+x << "\n";
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+    int w;
+    cin >> w;
+    while (w--) {
+        solve();
+    }
+}
