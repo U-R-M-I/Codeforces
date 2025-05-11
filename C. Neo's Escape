@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+void solve() {
+    int n, ut=0, inc=0, ans=0;
+    cin >> n;
+    while (n--) {
+        int x;
+        cin >> x;
+        if (x==ut) continue;
+        if (x<ut && inc) {
+            ans++;
+            inc=0;
+        }
+        if (x>ut) {
+            inc=1;
+        }
+        ut=x;
+    }
+    if (inc) {
+        ans++;
+    }
+ 
+    cout << ans << "\n";
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+    int w;
+    cin >> w;
+    while (w--) {
+        solve();
+    }
+}
