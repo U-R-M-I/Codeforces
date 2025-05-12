@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <queue>
+#include <deque>
+#include <bitset>
+#include <iterator>
+#include <list>
+#include <stack>
+#include <map>
+#include <set>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <limits>
+#include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include<cstring>
+ 
+using namespace std;
+ 
+#define lld long long int
+ 
+lld mark[1000002];
+ 
+void isPrime(){
+    for(lld i=4; i<=1000002; i=i+2){
+        mark[i]=1;
+    }
+ 
+ 
+    for(lld i=3; i<=1000002; i=i+2){
+ 
+        //lld limit=sqrt(1000002*.1)+2;
+ 
+        if(!mark[i]){
+            //Prime[nPrime++]=i;
+ 
+            //if(i<=limit){
+                for(lld j=2; i*j<=1000002; j++){
+                    mark[i*j]=1;
+                }
+            //}
+ 
+        }
+    }
+ 
+}
+ 
+int main(){
+    isPrime();
+ 
+        lld t;
+        cin>>t;
+ 
+        while(t--){
+            lld n;
+            cin>>n;
+ 
+            lld m= sqrt(n);
+ 
+            if(m*m==n && n!=1 && mark[m]==0){
+                cout<<"YES"<<endl;
+ 
+            }
+            else{
+                cout<<"NO"<<endl;
+            }
+        }
+ 
+ 
+    return 0;
+}
