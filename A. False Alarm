@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, x;
+        cin >> n >> x;
+        vector<int> a(n);
+        for (int i = 0; i < n; i++)
+            cin >> a[i];
+ 
+        int u = 0;
+        int bt = 0;
+        int f = 0;
+ 
+        for (int i = 0; i < n; i++) {
+            if (a[i] == 0) {
+                if (bt > 0) bt--;
+            } else {
+                if (u == 0) {
+                    u = 1;
+                    bt = x - 1;
+                } else if (bt > 0) {
+                    bt--;
+                } else {
+                    cout << "NO"<<endl;
+                   f = 1;
+                    break;
+                }
+            }
+        }
+ 
+        if (f == 0) {
+            cout << "YES"<<endl;
+        }
+    }
+}
