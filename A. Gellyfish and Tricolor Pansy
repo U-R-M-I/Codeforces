@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+#define ll long long int
+ 
+using namespace std;
+ 
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin >> t;
+    while (t--) {
+        ll a, b, c, d;
+        cin >> a >> b >> c >> d;
+ 
+        ll r1 = 2 * b - 1;
+        ll attack1 = b - 1; 
+        bool way1 = (a > attack1 && c > attack1);
+        ll attack2 = d - 1;
+        bool way2 = (c >= d && a > attack2);
+ 
+        if (way1 || way2) cout << "Gellyfish\n";
+        else cout << "Flower\n";
+    }
+    return 0;
+}
