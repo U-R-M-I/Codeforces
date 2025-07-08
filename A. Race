@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std;
+int TT, n, i, j, k, a, b;
+main()
+{
+    for(scanf("%d", &TT);TT--;)
+    {
+        int a, x, y;
+        scanf("%d %d %d", &a, &x, &y);
+        if(x>y)swap(x, y);
+        if(a<x||a>y)puts("YES");
+        else puts("NO");
+    }
+}
