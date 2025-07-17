@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const ll N = 1e10;
+ 
+void solve()
+{
+    ll n,l;
+    cin >> n >> l;
+ 
+    vector<ll> v(n);
+    for(auto &i :v) cin >> i;
+    sort(v.begin(),v.end());
+ 
+    double ans = 0;
+ 
+    for (ll i = 1; i < n; ++i)
+    {
+        ans = max(ans,((v[i] - v[i-1]))/2.0) ;
+    }
+    double start = v[0]-0;
+    double end = l-v[n-1];
+ 
+    cout << fixed << setprecision(10) << max({start,end,ans}) << endl;
+    
+}
+ 
+int main()
+{
+    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
+ 
+    // int t;
+    // cin >> t;
+    // while(t--)
+    // {
+    	solve();
+    // }
+ 
+    return 0;
+}
