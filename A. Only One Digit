@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+ 
+    int t;
+    cin >> t;
+ 
+    while (t--) {
+        int x;
+        cin >> x;
+        set<char> digits_in_x;
+        string x_str = to_string(x);
+        for (char ch : x_str) {
+            digits_in_x.insert(ch);
+        }
+ 
+        int y = 0;
+        while (true) {
+            string y_str = to_string(y);
+            bool found = false;
+ 
+            for (char ch : y_str) {
+                if (digits_in_x.count(ch)) {
+                    found = true;
+                    break;
+                }
+            }
+ 
+            if (found) {
+                cout << y << '\n';
+                break;
+            }
+ 
+            ++y;
+        }
+    }
+ 
+    return 0;
+}
