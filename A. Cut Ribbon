@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int a[4],dp[4][4123];
+ 
+int ribon(int i,int m)
+{
+	if(i>=3){
+		if(m==0) return 1;
+		else return 0;
+	}
+	if(dp[i][m]==-1){
+		int ret1=0,ret2=0;
+		if(m-a[i]>=0){
+			ret1=ribon(i,m-a[i]);
+			if(ret1>0) ret1++;
+		}
+		ret2=ribon(i+1,m);
+		dp[i][m]=max(ret1,ret2);
+	}
+	return dp[i][m];
+}
+ 
+int main()
+{
+	int n;
+	memset(dp,-1,sizeof dp);
+	cin>>n>>a[0]>>a[1]>>a[2];
+	cout<<ribon(0,n)-1;
+	return 0;
+}
