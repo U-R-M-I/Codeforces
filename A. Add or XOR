@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+using ll = int64_t;
+ 
+void solve(){
+	ll a, b, x, y;
+	cin >> a >> b >> x >> y;
+	ll INF = 1e18;
+	vector<ll> cost(102, INF);
+	cost[b] = 0;
+	for(int i = 0; i <= 100; i++){
+		for(int j = 0; j < 102; j++){
+			if(j+1 < 102) cost[j] = min(cost[j], cost[j+1] + x);
+			cost[j] = min(cost[j], cost[j^1] + y);
+		}
+	}
+	ll ans = cost[a];
+	if(ans >= INF) ans = -1;
+	cout << ans << '\n';
+}
+ 
+int main(){
+	ios_base::sync_with_stdio(false), cin.tie(nullptr);
+	int T;
+	cin >> T;
+	while(T--) solve();
+}
