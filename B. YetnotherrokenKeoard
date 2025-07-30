@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define ll long long
+ 
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+ 
+    int test;
+ 
+    cin >> test;
+ 
+    while(test--)
+    {
+        string s, result;
+ 
+        cin >> s;
+ 
+        ll len = s.size(), up = 0, low = 0;
+ 
+        for(int i = len-1; i >= 0; i--)
+        {
+            if(s[i] == 'b')
+                low++;
+            
+            else if(s[i] == 'B')
+                up++;
+            
+            else if(s[i] <= 'z' && s[i] >= 'a')
+            {
+                if(low)
+                    low--;
+                
+                else
+                    result.push_back(s[i]);
+            }
+ 
+            else if(s[i] <= 'Z' && s[i] >= 'A')
+            {
+                if(up)
+                    up--;
+                
+                else
+                    result.push_back(s[i]);
+            }
+        }
+        
+        reverse(result.begin(), result.end());
+ 
+        cout <<  result << "\n";
+    }
+ 
+    return 0;
+}
