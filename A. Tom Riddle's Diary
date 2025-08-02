@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>>
+using namespace std; 
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    int n;
+    cin>>n;
+    map<string,bool>mp;
+    for(int i=1;i<=n;i++)
+    {
+        // pair<string,bool>p;
+        string x;
+        cin>>x;
+        if(!mp[x])
+        {
+            cout<<"NO"<<"\n";
+            mp[x]=true;
+        }
+        else{
+            cout<<"YES"<<"\n";
+        }
+    }
+}
