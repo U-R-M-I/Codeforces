@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int t;
+    cin>>t;
+    long long int sum=0;
+    while (t--)
+    {
+        int x,value;
+        cin>>x;
+        priority_queue<int>bunous;
+        for(int i=0;i<x;i++)
+        {
+            cin>>value;
+            if(value>0) bunous.push(value);
+           
+           else if(value==0 && !bunous.empty())
+            {
+                sum+= bunous.top();
+                bunous.pop();
+                
+ 
+            }
+        }
+          
+       cout<<sum<<endl;
+       sum=0;
+    }
+    
+}
