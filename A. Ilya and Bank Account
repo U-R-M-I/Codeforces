@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ 
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int k;
+    cin >> k;
+    if(k > 0)
+    {
+        cout << k << endl;
+        return 0;
+    } 
+    else 
+    {
+        k = -k;
+        cout << max(-(k/10), -(10*(k/100) +k % 10)) << endl;
+    }
+    return 0;
+}
