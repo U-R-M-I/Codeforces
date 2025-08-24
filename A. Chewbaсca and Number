@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+     string num;
+    cin >> num;
+ 
+ 
+    for(int i =0; i < num.size(); i++)
+    {
+        if(num[i] == '9' && i == 0) continue;
+        int x = num[i] - '0';
+ 
+        if((9-x) < x) x = 9-x;
+ 
+        num[i] = x + '0'; 
+    }
+ 
+    cout << num << endl;
+ 
+    return 0;
+}
