@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+ 
+    int t,n,ecnt,ocnt;
+    int ar[1010];
+ 
+    cin>>t;
+ 
+    while(t--)
+    {
+        ecnt=ocnt=0;
+ 
+        cin>>n;
+ 
+        for(int i=0;i<n;i++)
+        {
+            cin>>ar[i];
+            if(i%2!=ar[i]%2)
+            {
+                if(i%2==0)ecnt++;
+                else ocnt++;
+            }
+        }
+ 
+        if(ecnt==ocnt)cout<<ocnt<<endl;
+ 
+        else cout<<-1<<endl;
+    }
+    return 0;
+}
+ 
