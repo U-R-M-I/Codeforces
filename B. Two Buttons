@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int n,m,ans=0,a,b;
+	cin>>n>>m;
+ 
+	if(n==m) cout<<"0";
+ 
+	else{
+		while(1){
+ 
+		if(n>m){
+				ans+=(n-m);
+				break;
+			}
+ 
+		else {
+ 
+			if(m%2==0){
+				m/=2;
+				ans++;
+				}
+ 
+			else{
+				m++;
+				ans++;
+			}
+ 
+		}
+			if(n==m) break;
+	      }
+		}
+		cout<<ans;
+}
