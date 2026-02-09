@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	string key="qwertyuiopasdfghjkl;zxcvbnm,./";
+	char s;
+	cin>>s;
+	string str;
+	cin>>str;
+	for(int i=0;i<str.size();i++){
+		for(int j=0;j<key.size();j++){
+			if(str[i]==key[j]){
+				if(s=='R') cout<<key[j-1];
+				else cout<<key[j+1];
+			}
+		}
+	}
+}
