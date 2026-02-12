@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+using namespace std;
+using namespace __gnu_pbds;
+ 
+#define ll long long
+#define nl '\n'
+ 
+ 
+int main () {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+        
+    int test = 1;  cin >> test;
+    while (test--) {
+        int n;  cin >> n;
+        map<ll, ll> mp;
+        for (int i = 0; i < n; i++) {
+            int x;  cin >> x;
+            mp[i - x]++;
+        }   
+        ll ans = 0;             
+        for (auto [x, y]: mp) {
+            ans += (y * (y - 1)) / 2;
+        }    
+        cout << ans << nl;
+    }
+    return 0;
+}
