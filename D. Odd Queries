@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ 
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+ 
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n, q;
+        cin >> n >> q;
+        vector<int> yo(n);
+        for (int &e : yo)
+            cin >> e;
+        int odd = 0;
+        vector<int> pref_odd(n), suff_odd(n);
+        for (int i = 0; i < n; i++)
+        {
+            if (yo[i] % 2)
+                odd++;
+            pref_odd[i] = odd;
+        }
+        odd = 0;
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (yo[i] % 2)
+                odd++;
+            suff_odd[i] = odd;
+        }
+        while (q--)
+        {
+            int l, r, k;
+            cin >> l >> r >> k;
+            int odd = 0, pref = 0, suff = 0;
+            if (l - 1 == 0)
+                pref = 0;
+            else
+                pref = pref_odd[l - 2];
+            if (r == n)
+                suff = 0;
+            else
+                suff = suff_odd[r];
+            if (k % 2)
+                odd = pref + suff + (r - l + 1);
+            else
+                odd = pref + suff;
+            if (odd % 2)
+                cout << "YES\n";
+            else
+                cout << "NO\n";
+        }
+    }
+}
