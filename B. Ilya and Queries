@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const ll N = 1e10;
+ 
+void solve()
+{
+    string st;
+    cin >> st;
+ 
+    int cnt = 0;
+    vector<int> pref(st.size(),0);
+ 
+    for (int i = 1; i < st.size(); i++)
+    {
+        if(st[i] == st[i-1]) cnt++;
+        pref[i]  = cnt;
+    }
+    
+    int q;
+    cin >> q;
+ 
+    while(q--)
+    {
+        int l,r;
+        cin >> l >> r;
+ 
+        cout << pref[r-1]-pref[l-1] << endl;
+    }
+}
+ 
+int main()
+{
+    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
+ 
+    // int t;
+    // cin >> t;
+    // while(t--)
+    // {
+    	solve();
+    // }
+ 
+    return 0;
+}
