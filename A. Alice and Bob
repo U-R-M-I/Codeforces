@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define ll long long
+#define nl '\n'
+ 
+void answer(){
+    ll n, x; cin >> n >> x;
+    vector<ll> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    ll l = 0, r = 0;
+    for (int i = 0; i < n; i++) {
+      if (a[i] <= x) l += 1;
+      if (a[i] >= x) r += 1;
+    }
+    
+    if (l > r) cout << x-1 << nl;
+      else cout << x+1 << nl;
+    
+}
+    
+int32_t main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);
+    
+    int t = 1; cin >> t;
+    for (int i = 1; i <= t; i++){
+        answer();
+    }
+    return 0;
+}
