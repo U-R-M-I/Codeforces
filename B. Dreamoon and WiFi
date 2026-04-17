@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+#define ll long long
+#define nl '\n'
+ 
+ 
+int main () {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string x, y;    cin >> x >> y;
+    int n = x.size();
+    int dx = 0, dy = 0;
+    vector<int> pos;
+    for (int i = 0; i < (int)n; i++) {
+        if (y[i] == '?') pos.push_back(i);
+        if (x[i] == '+') dx++;
+        else dx--;
+        if (y[i] == '+') dy++;
+        else dy--;
+    }    
+    cout << fixed << setprecision(12);
+    if (pos.empty()) {
+        cout << (double)(dx == dy ? 1: 0) << nl;
+        return 0;
+    }
+    int ans = 0;
+    for (int mask = 0; mask < (1 << (int)pos.size()); mask++) {
+        // cout << mask << nl;
+        string cur = y;
+        for (int i = 0; i < (int)pos.size(); i++) {
+            if ((mask & (1 << i))) cur[pos[i]] = '+';
+            else cur[pos[i]] = '-';
+        }
+        dy = 0;
+        for (int i = 0; i < cur.size(); i++) {
+            if (cur[i] == '+') dy++;
+            else dy--;
+        }
+        if (dx == dy) ans++;
+    }
+    cout << ans / (double) (1 << (int)pos.size()) << '\n';
+    return 0;
+}
